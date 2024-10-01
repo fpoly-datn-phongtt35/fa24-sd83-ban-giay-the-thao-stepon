@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm đợt giảm giá</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Thêm đợt giảm giá</h1>
+<!-- Sử dụng th:object để bind dữ liệu từ model -->
+<form th:action="@{/api/store}" th:object="${dotGiamGia}" method="post">
+    <!-- Trường ID -->
+    <div>
+        <label>ID</label>
+        <input type="text" th:field="*{id}" placeholder="Nhập ID">
+        <!-- Hiển thị lỗi nếu có -->
+        <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Lỗi ID</p>
+    </div>
+
+    <!-- Trường Mã giảm giá -->
+    <div>
+        <label>Mã giảm giá</label>
+        <input type="text" th:field="*{magiamgia}" placeholder="Nhập mã giảm giá">
+        <p th:if="${#fields.hasErrors('magiamgia')}" th:errors="*{magiamgia}">Lỗi mã giảm giá</p>
+    </div>
+
+    <!-- Trường Tên -->
+    <div>
+        <label>Tên</label>
+        <input type="text" th:field="*{ten}" placeholder="Nhập tên đợt giảm giá">
+        <p th:if="${#fields.hasErrors('ten')}" th:errors="*{ten}">Lỗi tên đợt giảm giá</p>
+    </div>
+
+    <!-- Trường Loại -->
+    <div>
+        <label>Loại</label>
+        <input type="text" th:field="*{loai}" placeholder="Nhập loại giảm giá">
+        <p th:if="${#fields.hasErrors('loai')}" th:errors="*{loai}">Lỗi loại giảm giá</p>
+    </div>
+
+    <!-- Trường Giá trị đợt giảm giá -->
+    <div>
+        <label>Giá trị đợt giảm giá</label>
+        <input type="number" th:field="*{gtdgiamgia}" placeholder="Nhập giá trị đợt giảm giá">
+        <p th:if="${#fields.hasErrors('gtdgiamgia')}" th:errors="*{gtdgiamgia}">Lỗi giá trị giảm giá</p>
+    </div>
+
+    <!-- Trường Ngày bắt đầu -->
+    <div>
+        <label>Ngày bắt đầu</label>
+        <input type="date" th:field="*{ngaybatdau}">
+        <p th:if="${#fields.hasErrors('ngaybatdau')}" th:errors="*{ngaybatdau}">Lỗi ngày bắt đầu</p>
+    </div>
+
+    <!-- Trường Ngày kết thúc -->
+    <div>
+        <label>Ngày kết thúc</label>
+        <input type="date" th:field="*{ngayketthuc}">
+        <p th:if="${#fields.hasErrors('ngayketthuc')}" th:errors="*{ngayketthuc}">Lỗi ngày kết thúc</p>
+    </div>
+
+    <!-- Trường Trạng thái -->
+    <div>
+        <label>Trạng thái</label>
+        <select th:field="*{trangthai}">
+            <option value="1">Hoạt động</option>
+            <option value="0">Không hoạt động</option>
+        </select>
+        <p th:if="${#fields.hasErrors('trangthai')}" th:errors="*{trangthai}">Lỗi trạng thái</p>
+    </div>
+
+    <!-- Nút Submit -->
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+
+</body>
+</html>
